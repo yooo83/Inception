@@ -24,8 +24,8 @@ services:
             args:
                 MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
                 MYSQL_DATABASE: ${MYSQL_DATABASE}
-                MYSQL_USER: ${MYSQL_USER}
-                MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+                MYSQL_USER_ADMIN: ${MYSQL_USER_ADMIN}
+                MYSQL_PASSWORD_ADMIN: ${MYSQL_PASSWORD_ADMIN}
         networks:
             - my_network
         restart: always

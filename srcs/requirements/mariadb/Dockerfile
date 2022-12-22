@@ -2,8 +2,8 @@ FROM alpine:3.16
 
 ARG MYSQL_ROOT_PASSWORD
 ARG MYSQL_DATABASE
-ARG MYSQL_USER
-ARG MYSQL_PASSWORD
+ARG MYSQL_USER_ADMIN
+ARG MYSQL_PASSWORD_ADMIN
 
 RUN apk update && \
 	apk add mariadb mariadb-client openrc && \
@@ -17,7 +17,7 @@ RUN apk update && \
 	#auto-completion
 	printf "\n Y\n Y\n ${MYSQL_ROOT_PASSWORD}\n${MYSQL_ROOT_PASSWORD}\n Y\n Y\n Y\n Y\n" | mysql_secure_installation && \
 	#createdb and add privileges (with grand option == can give privileges)
-	mysql -e "CREATE DATABASE ${MYSQL_DATABASE};CREATE USER '${MYSQL_USER}'@localhost IDENTIFIED BY '${MYSQL_PASSWORD}';GRANT ALL PRIVILEGES ON ${MYSQL_DATABASE}.* TO '${MYSQL_USER}'@'%' IDENTIFIED BY '${MYSQL_PASSWORD}' WITH GRANT OPTION;CREATE USER 'monzeub'@localhost IDENTIFIED BY '${MYSQL_PASSWORD}';FLUSH PRIVILEGES;"
+	mysql -e "CREATE DATABASE ${MYSQL_DATABASE};CREATE USER '${MYSQL_USER_ADMIN}'@localhost IDENTIFIED BY '${MYSQL_PASSWORD_ADMIN}';GRANT ALL PRIVILEGES ON ${MYSQL_DATABASE}.* TO '${MYSQL_USER_ADMIN}'@'%' IDENTIFIED BY '${MYSQL_PASSWORD_ADMIN}' WITH GRANT OPTION;FLUSH PRIVILEGES;"
 
 COPY /conf/mariadb-server.cnf ./etc/my.cnf.d
 CMD ["mysqld", "--user=root"]

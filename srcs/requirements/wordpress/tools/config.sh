@@ -13,13 +13,16 @@ rm -rf ./latest-fr_FR.tar.gz
 chmod 777 /var/www/wordpress
 
 #create a config.php
-wp config create --allow-root --dbname=$MYSQL_DATABASE --dbuser=$MYSQL_USER --dbpass=$MYSQL_PASSWORD --dbhost=mariadb:3306 --locale=fr_FR --path='/var/www/wordpress'
-
+wp config create --allow-root --dbname=$MYSQL_DATABASE --dbuser=$MYSQL_USER_ADMIN --dbpass=$MYSQL_PASSWORD_ADMIN --dbhost=mariadb:3306 --locale=fr_FR --path='/var/www/wordpress'
 
 # #install wp
-wp core install --allow-root --url=localhost --title="Mon site Wordpress" --path='/var/www/wordpress' --admin_user=mederis --admin_email=mederis@grosteub.com --skip-email
+wp core install --allow-root --url=localhost --title="Ygaiero Website" \
+		--path='/var/www/wordpress' --admin_user=$MYSQL_USER_ADMIN \
+		--admin_email=test@test.com --skip-email --admin_password=$MYSQL_PASSWORD_ADMIN
 sed -i "s/127.0.0.1:9000/9000/g" /etc/php8/php-fpm.d/www.conf
-echo "le taf est finit morray"
+
+wp user create --allow-root $MYSQL_USER test@test.test --role="subscriber" --user_pass=$MYSQL_USER_PASSWORD --path='/var/www/wordpress'
+echo "Install finish."
 fi
 
 exec php-fpm8 -F
