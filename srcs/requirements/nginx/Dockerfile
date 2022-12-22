@@ -1,7 +1,8 @@
 FROM alpine:3.16
 
 RUN mkdir -p ./etc/nginx/ssl
-# update alpine && install nginx
+
+# update alpine && install nginx openssl && and generate certificates
 RUN apk update && \
 	apk add nginx openssl && \
 	openssl req -x509 -sha256 -nodes -newkey rsa:2048 -days 365 \
