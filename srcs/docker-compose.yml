@@ -14,7 +14,7 @@ services:
             - my_network
         restart: always
         volumes:
-          - ./wordpress:/var/www/wordpress
+          - /home/login/wordpress:/var/www/wordpress
 
     mariadb:
         container_name: mariadb
@@ -31,8 +31,8 @@ services:
         restart: always
         expose:
             - "3306"
-        #volumes:
-        #    - ./mariadb:/var/lib/mysql
+        volumes:
+            - /home/login/mariadb:/var/lib/mysql
 
     wordpress:
         depends_on:
