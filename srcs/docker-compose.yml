@@ -49,7 +49,7 @@ services:
         expose:
             - "9000"
         volumes:
-          - ./wordpress:/var/www/wordpress
+          - /home/login/wordpress:/var/www/wordpress
         
         
 networks:
