@@ -10,7 +10,7 @@ chmod +x wp-cli.phar && mv wp-cli.phar /usr/local/bin/wp
 #dl wp && extract && move on www/ && add permissions
 wget https://fr.wordpress.org/latest-fr_FR.tar.gz && tar -xf latest-fr_FR.tar.gz -C /var/www
 rm -rf ./latest-fr_FR.tar.gz
-chmod 777 /var/www/wordpress
+chmod 777 /home/login/wordpress
 
 #create a config.php
 wp config create --allow-root --dbname=$MYSQL_DATABASE --dbuser=$MYSQL_USER_ADMIN --dbpass=$MYSQL_PASSWORD_ADMIN --dbhost=mariadb:3306 --locale=fr_FR --path='/var/www/wordpress'
