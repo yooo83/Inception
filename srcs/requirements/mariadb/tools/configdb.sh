@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ ! -f "/home/ygaiero/mariadb/ib_buffer_pool" ]; then
+if [ ! -f "/var/lib/mysql/mysql" ]; then
 #auto-completion
 printf "\n Y\n Y\n ${MYSQL_ROOT_PASSWORD}\n${MYSQL_ROOT_PASSWORD}\n Y\n Y\n Y\n Y\n" | mysql_secure_installation
 #createdb and add privileges (with grand option == can give privileges)
