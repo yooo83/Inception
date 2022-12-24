@@ -8,7 +8,7 @@ ARG MYSQL_PASSWORD_ADMIN
 COPY /tools/configdb.sh ./bin/
 COPY /conf/mariadb-server.cnf ./etc/my.cnf.d
 
-RUN apk update && \
+RUN apk update && chmod 777 /tools/configdb.sh && \
 	apk add mariadb mariadb-client openrc && \
 	#to handle openrc errors on alpine 3.16
 	openrc && touch ./run/openrc/softlevel && \
