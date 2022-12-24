@@ -1,7 +1,7 @@
 #!/bin/sh
 
 #dl wp cli
-if [ ! -f "/var/www/wordpress/index.php" ]; then 
+if [ ! -f "/home/ygaiero/wordpress/index.php" ]; then 
 wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 
 #cli need to be executable
