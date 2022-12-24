@@ -5,7 +5,6 @@ ARG MYSQL_DATABASE
 ARG MYSQL_USER_ADMIN
 ARG MYSQL_PASSWORD_ADMIN
 
-COPY /tools/configdb.sh ./bin/
 COPY /conf/mariadb-server.cnf ./etc/my.cnf.d
 
 RUN apk update && chmod 777 /tools/configdb.sh && \
@@ -17,6 +16,8 @@ RUN apk update && chmod 777 /tools/configdb.sh && \
 	/etc/init.d/mariadb setup && \
 	#start the service
 	rc-service mariadb start
+	
+COPY /tools/configdb.sh ./bin/
 
 ENTRYPOINT [ "/bin/configdb.sh" ]
 
