@@ -22,7 +22,7 @@ wp core install --allow-root --url=localhost --title="Ygaiero Website" \
 sed -i "s/127.0.0.1:9000/9000/g" /etc/php8/php-fpm.d/www.conf
 
 wp user create --allow-root $MYSQL_USER test@test.test --role="subscriber" --user_pass=$MYSQL_USER_PASSWORD --path='/var/www/wordpress'
-echo "Install finish."
+echo "Wordpress installed."
 fi
 
 exec php-fpm8 -F
