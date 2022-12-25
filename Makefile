@@ -11,4 +11,4 @@ rmVolumes:
 	sudo rm -rf ../../wordpress
 	sudo rm -rf ../../mariadb
 
-.phony: all stop     
+.phony: all stop

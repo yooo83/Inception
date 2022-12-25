@@ -1,7 +1,7 @@
 #!/bin/sh
 
 #dl wp cli
-if [ ! -f "/home/ygaiero/wordpress/index.php" ]; then 
+if [ ! -f "/var/www/wordpress/index.php" ]; then 
 wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 
 #cli need to be executable
@@ -12,6 +12,10 @@ wget https://fr.wordpress.org/latest-fr_FR.tar.gz && tar -xf latest-fr_FR.tar.gz
 rm -rf ./latest-fr_FR.tar.gz
 chmod 777 /var/www/wordpress
 
+while ! mysqladmin status --host mariadb --user=$MYSQL_USER_ADMIN --password=$MYSQL_PASSWORD_ADMIN --silent; do
+	echo "Waiting DB response..."
+	sleep 1
+done
 #create a config.php
 wp config create --allow-root --dbname=$MYSQL_DATABASE --dbuser=$MYSQL_USER_ADMIN --dbpass=$MYSQL_PASSWORD_ADMIN --dbhost=mariadb:3306 --locale=fr_FR --path='/var/www/wordpress'
 

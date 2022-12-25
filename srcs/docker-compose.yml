@@ -20,7 +20,7 @@ services:
         container_name: mariadb
         build:
             context: ./requirements/mariadb
-            dockerfile: Dockerfile
+            dockerfile: Dockerfile          
             args:
                 MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
                 MYSQL_DATABASE: ${MYSQL_DATABASE}
@@ -31,6 +31,8 @@ services:
         restart: always
         expose:
             - "3306"
+        env_file:
+            - .env
         volumes:
             - /home/ygaiero/mariadb:/var/lib/mysql
 
